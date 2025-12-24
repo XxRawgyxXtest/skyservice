@@ -1,0 +1,227 @@
+:root {
+    --primary: #00ffff; /* Neon Blue */
+    --primary-dark: #00bfff;
+    --primary-foreground: #09090b;
+    --background: #010409;
+    --card: #0c0f16;
+    --card-hover: #161a25; /* Sfondo leggermente più chiaro per l'hover */
+    --muted-foreground: #94a3b8;
+    --secondary: #ff00ff; /* Neon Magenta per accenti */
+    --discord-blue: #5865f2; 
+}
+
+/* Animazione per i bordi che si illuminano */
+@keyframes neon-glow {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    /* Rimuoviamo il gradiente per una superficie più scura e netta */
+}
+
+.preventivo-container {
+    max-width: 800px;
+    width: 100%;
+    background: var(--card);
+    border: 2px solid var(--primary); /* Bordo più spesso e neon */
+    border-radius: 18px;
+    padding: 40px;
+    /* Effetto di bagliore costante sul contenitore */
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3); 
+    z-index: 10;
+}
+
+.header h1 {
+    font-size: 42px; /* Aumentato */
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--primary);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Bagliore più intenso */
+    text-align: center;
+}
+
+.description {
+    color: var(--muted-foreground);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+.back-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    display: inline-block; /* Cambiato a inline-block per coerenza */
+    margin-bottom: 30px;
+    transition: color 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    color: var(--primary);
+    text-shadow: 0 0 5px var(--primary);
+}
+
+/* Modulo */
+.form-card {
+    background: #11141c;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Ombra interna */
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary); /* Etichette in Neon Blue */
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.3);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 14px; /* Padding aumentato */
+    background: var(--card-hover);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: var(--primary);
+    background: #192133; /* Sfondo leggermente più scuro al focus */
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Bagliore più forte al focus */
+    animation: neon-glow 1s infinite alternate; /* Animazione leggera di pulsazione */
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+/* Pulsanti */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 16px; /* Padding aumentato */
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Bagliore più forte */
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.discord-btn {
+    background: var(--discord-blue); /* Colore Discord */
+    color: white;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+    border: 1px solid var(--discord-blue);
+}
+
+.discord-btn:hover {
+    background: #4752c4;
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.8);
+    transform: translateY(-2px);
+}
+
+.action-box {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px dashed var(--secondary); /* Linea di separazione Magenta */
+}
+
+.action-box p {
+    text-align: center;
+    color: var(--muted-foreground);
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+/* Layout Pulsanti */
+.action-box .btn-group {
+    display: flex;
+    gap: 15px;
+}
+
+.action-box .btn-group .btn {
+    flex: 1;
+    margin-top: 0;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer p {
+    font-size: 13px;
+    color: #526379;
+}
+
+/* Media Query */
+@media (max-width: 600px) {
+    .preventivo-container {
+        padding: 30px 20px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+    
+    .action-box .btn-group {
+        flex-direction: column;
+    }
+
+    .action-box .btn-group .btn {
+        width: 100%;
+    }
+}

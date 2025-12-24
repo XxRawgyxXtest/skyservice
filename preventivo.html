@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Richiedi Preventivo | SkyService</title>
+    <meta name="description" content="Richiedi un preventivo personalizzato per Bot Discord, Server Minecraft o Soluzioni Web." />
+    
+    <link rel="stylesheet" href="preventivo-style.css" />
+</head>
+<body>
+
+    <div class="preventivo-container">
+        
+        <header class="header">
+            <a href="index.html" class="back-link">← Torna alla Home</a>
+            <h1>RICHIESTA PREVENTIVO</h1>
+            <p class="description">Compila i campi sottostanti per aiutarci a capire il tuo progetto e ottenere un'offerta personalizzata.</p>
+        </header>
+
+        <main class="form-card">
+            <form id="quoteForm" action="https://formspree.io/f/mpqaeqjo" method="POST">
+                
+                <div class="input-group">
+                    <label for="name">Nome/Nick Discord</label>
+                    <input type="text" id="name" name="Nome Discord" required placeholder="Es: MarioRossi#1234 o il tuo ID Discord">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="La tua email per la risposta formale">
+                </div>
+
+                <div class="input-group">
+                    <label for="service">Tipo di Servizio Richiesto</label>
+                    <select id="service" name="Servizio Richiesto" required>
+                        <option value="" disabled selected>Seleziona un'opzione</option>
+                        <option value="minecraft_network">Hosting Minecraft (Server/Network)</option>
+                        <option value="discord_bot">Sviluppo Bot Discord Custom</option>
+                        <option value="web_solution">Sito Web / Store E-commerce</option>
+                        <option value="ultimate_bundle">Pacchetto ULTIMATE (Tutto Incluso)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="details">Dettagli del Progetto (Spiega le tue esigenze)</label>
+                    <textarea id="details" name="Dettagli Progetto" rows="6" required placeholder="Es: Un bot Discord che gestisca i ticket e l'economia, o un server Survival 1.20 con 50 slot..."></textarea>
+                </div>
+
+                <div class="action-box">
+                    <p>La richiesta verrà inviata allo staff. Ti invitiamo ad **unirti al canale di supporto Discord** per discutere i dettagli e completare il pagamento velocemente.</p>
+                    <div class="btn-group">
+                        <button type="submit" class="btn submit-btn">INVIA RICHIESTA</button>
+                        <a href="https://discord.com/channels/1447645589763260439/1447661773837701272" target="_blank" class="btn discord-btn">UNISCITI AL CANALE DI SUPPORTO →</a>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <p>Il pagamento verrà gestito solo dopo la conferma dei dettagli e del costo finale da parte di un membro dello Staff.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // URL Endpoint di Formspree (il tuo ID univoco)
+        const FORMSPREE_URL = "https://formspree.io/f/mpqaeqjo"; 
+
+        document.getElementById('quoteForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Impedisce l'invio classico del modulo
+
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            // Disabilita il pulsante durante l'invio per evitare doppi click
+            const submitButton = form.querySelector('.submit-btn');
+            submitButton.disabled = true;
+            submitButton.textContent = 'INVIO IN CORSO...';
+
+            try {
+                const response = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Richiesta Preventivo Inviata con Successo! Controlla l\'email e unisciti a Discord.');
+                    form.reset(); // Pulisce il modulo
+                    
+                    // Reindirizza o apre il Discord in una nuova tab DOPO l'invio
+                    window.open('https://discord.com/channels/1447645589763260439/1447661773837701272', '_blank');
+                } else {
+                    alert('Errore nell\'invio della richiesta. Per favore, prova a contattarci direttamente su Discord.');
+                }
+            } catch (error) {
+                alert('Errore di connessione. Controlla la tua rete o riprova più tardi.');
+            } finally {
+                // Riabilita il pulsante
+                submitButton.disabled = false;
+                submitButton.textContent = 'INVIA RICHIESTA';
+            }
+        });
+    </script>
+</body>
+</html>
