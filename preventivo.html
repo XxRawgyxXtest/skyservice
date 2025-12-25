@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Richiedi Preventivo | SkyService</title>
     <meta name="description" content="Richiedi un preventivo personalizzato per Bot Discord, Server Minecraft o Soluzioni Web." />
-    <link rel="icon" type="image/png" href="/favicon.png">
     
     <link rel="stylesheet" href="preventivo-style.css" />
 </head>
@@ -21,10 +20,6 @@
 
         <main class="form-card">
             <form id="quoteForm" action="https://formspree.io/f/mpqaeqjo" method="POST">
-        <form name="preventivo-form" method="POST" data-netlify="true">
-        <form name="preventivo" method="POST" action="/thanks.html" netlify>
-        <button type="submit">Invia Richiesta</button>
-            
                 
                 <div class="input-group">
                     <label for="name">Nome/Nick Discord</label>
@@ -110,28 +105,9 @@
             }
         });
     </script>
-    <script>
-    // Questo codice gestisce il reindirizzamento dopo un login o un logout
-    if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-            if (!user) {
-                // Se l'utente non è loggato, attiva la funzione di login
-                window.netlifyIdentity.on("login", () => {
-                    // Reindirizza l'utente alla pagina admin dopo il login
-                    document.location.href = "/admin.html"; 
-                });
-            }
-        });
-        
-        // Gestisce il reindirizzamento dopo il logout
-        window.netlifyIdentity.on('logout', () => {
-            document.location.href = '/'; // Reindirizza alla homepage dopo il logout
-        });
-    }
-</script>
 </body>
-
 </html>
+
 
 
 
